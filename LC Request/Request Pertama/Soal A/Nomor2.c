@@ -1,20 +1,19 @@
 #include <stdio.h>
 
 int main() {
-    int hh, mm, ss;
+    int hh, mm, ss, tambahMenit;
     
     do {
         printf("Masukkan Jam (hh:mm:ss): ");
-        scanf("%02d:%02d:%02d", &hh, &mm, &ss);
-    }while(hh >= 24 || mm >= 60 || ss >= 60);
+        scanf("%d:%d:%d", &hh, &mm, &ss);
+    }while(hh >= 24 || mm >= 60 || ss >= 60 || hh < 0 || mm < 0 || ss < 0);
 
     printf("Jam Lama = %02d:%02d:%02d\n\n", hh, mm , ss);
 
-    // nambah 1 menit
-    int tambahMenit;
-
-    printf("Ingin menambah berapa menit?");
-    scanf("%02d", &tambahMenit);
+    do {
+        printf("Ingin menambah berapa menit?");
+        scanf("%d", &tambahMenit);
+    }while(tambahMenit < 0);
 
     mm += tambahMenit;
 
@@ -23,11 +22,13 @@ int main() {
         hh += 1;
     }
 
-    if(hh == 24) {
-        hh = 0;
+    while(hh >= 24) {
+        hh -= 24;
     }
 
-    printf("Jam Lama + 1 menit = %02d:%02d:%02d\n\n", hh, mm , ss);
+    printf("Jam Lama + %d menit = %02d:%02d:%02d\n\n", tambahMenit, hh, mm , ss);
 
     return 0;
 }
+
+
